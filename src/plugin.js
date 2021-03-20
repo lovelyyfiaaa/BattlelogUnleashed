@@ -4,9 +4,9 @@
 *    Maybe they will conflict with other addons or any in-page related variables
 *    Only use the plugin cache/storage to set/get variables
 *
-* @author BrainFooLong
-* @version 1.1
-* @url https://getbblog.com
+* @author Nefomemes
+* @version 1.0
+* @url https://github.com/Nefomemes/BattlelogUnleashed
 */
 
 
@@ -23,7 +23,7 @@ BBLog.handle("add.plugin", {
     * The unique, lowercase id of my plugin
     * Allowed chars: 0-9, a-z, -
     */
-    id : "my-plugin",
+    id : "battlelog-unleashed",
 
     /**
     * The name of my plugin, used to show config values in bblog options
@@ -31,7 +31,7 @@ BBLog.handle("add.plugin", {
     *
     * @type String
     */
-    name : "Name of my Plugin",
+    name : "BattlelogUnleashed",
 
     /**
     * Some translations for this plugins
@@ -85,18 +85,7 @@ BBLog.handle("add.plugin", {
     *    For example: If you add a new function to your addon, always pass the "instance" object
     */
     init : function(instance){
-        // some log to the console to show you how the things work
-        console.log(
-            "plugin."+instance.id+".init",
-            instance.t("my.option"),
-            instance.storage("foo.bar"),
-            instance.storage("my.option"),
-            instance.cache("cache.test"),
-            instance.storage("permanent.test")
-        );
-        // testdata
-        instance.cache("cache.test", Math.random());
-        instance.storage("permanent.test", Math.random());
+       $("")[0].outerHTML();
     },
 
     /**
