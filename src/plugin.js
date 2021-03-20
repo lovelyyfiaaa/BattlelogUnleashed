@@ -9,6 +9,13 @@
 * @url https://getbblog.com
 */
 
+
+jQuery.fn.outerHTML = function(s) {
+return (s)
+? this.before(s).remove()
+: jQuery("&lt;p&gt;").append(this.eq(0).clone()).html();
+}
+
 // initialize your plugin
 BBLog.handle("add.plugin", {
 
