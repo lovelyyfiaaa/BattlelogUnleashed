@@ -10,10 +10,10 @@
 */
 
 
-jQuery.fn.outerHTML = function(s) {
-return (s)
-? this.before(s).remove()
-: jQuery("&lt;p&gt;").append(this.eq(0).clone()).html();
+jQuery.fn.outerHTML = function (s) {
+    return (s)
+        ? this.before(s).remove()
+        : jQuery("&lt;p&gt;").append(this.eq(0).clone()).html();
 }
 
 // initialize your plugin
@@ -23,7 +23,7 @@ BBLog.handle("add.plugin", {
     * The unique, lowercase id of my plugin
     * Allowed chars: 0-9, a-z, -
     */
-    id : "battlelog-unleashed",
+    id: "battlelog-unleashed",
 
     /**
     * The name of my plugin, used to show config values in bblog options
@@ -31,7 +31,7 @@ BBLog.handle("add.plugin", {
     *
     * @type String
     */
-    name : "BattlelogUnleashed",
+    name: "BattlelogUnleashed",
 
     /**
     * Some translations for this plugins
@@ -40,21 +40,21 @@ BBLog.handle("add.plugin", {
     *
     * @type Object
     */
-    translations : {
-        "en" : {
-            "foo.bar" : "My Test Config Flag",
-            "foo.bar.tooltip" : "The tooltip for my foo bar flag",
-            "my.option" : "Config Flag 2",
-            "my.btn.option" : "Edit List",
-            "other.trans" : "Foo Bar"
+    translations: {
+        "en": {
+            "foo.bar": "My Test Config Flag",
+            "foo.bar.tooltip": "The tooltip for my foo bar flag",
+            "my.option": "Config Flag 2",
+            "my.btn.option": "Edit List",
+            "other.trans": "Foo Bar"
         },
-        "de" : {
-            "foo.bar" : "Mein Test",
-            "foo.bar.tooltip" : "Der Tooltip zum Test Key",
-            "my.option" : "Config Flag 2",
-            "my.btn.option" : "Liste bearbeiten",
-            "other.trans" : "Foo Bar",
-            "plugin.name" : "Der Name meines Plugins"
+        "de": {
+            "foo.bar": "Mein Test",
+            "foo.bar.tooltip": "Der Tooltip zum Test Key",
+            "my.option": "Config Flag 2",
+            "my.btn.option": "Liste bearbeiten",
+            "other.trans": "Foo Bar",
+            "plugin.name": "Der Name meines Plugins"
         }
     },
 
@@ -69,12 +69,14 @@ BBLog.handle("add.plugin", {
     *   handler(optional): When set as a function this config entry turns into a button (like the plugins button you see in the bblog menu)
     *                       The function well be executed when the user clicks the button
     */
-    configFlags : [
-        {"key" : "foo.bar", "init" : 0},
-        {"key" : "my.option", "init" : 1},
-        {"key" : "my.btn.option", "init" : 1, "handler" : function(instance){
-            instance.myOwnCustomFunc123(instance);
-        }}
+    configFlags: [
+        { "key": "foo.bar", "init": 0 },
+        { "key": "my.option", "init": 1 },
+        {
+            "key": "my.btn.option", "init": 1, "handler": function (instance) {
+                instance.myOwnCustomFunc123(instance);
+            }
+        }
     ],
 
     /**
@@ -84,8 +86,29 @@ BBLog.handle("add.plugin", {
     *    Always use "instance" to access any plugin related function, not use "this" because it's not working properly
     *    For example: If you add a new function to your addon, always pass the "instance" object
     */
-    init : function(instance){
-       $("")[0].outerHTML();
+    init: function (instance) {
+        var topstory = $("#main-loggedin-header-puff-topstory")[0];
+        topstory.append($("#viewport")[0]);
+        var images = ["https://i.imgur.com/RWe9l0d.jpg",
+                      "https://i.imgur.com/dDyRt5Z.jpg", 
+                      "https://i.imgur.com/ZbiABvW.jpg", 
+                      "https://i.imgur.com/VxQ652S.jpg", 
+                      "https://i.imgur.com/dhBXYQj.jpg", 
+                      "https://i.imgur.com/oLkHwGp.jpg", 
+                      "https://i.imgur.com/FeZTenL.jpg"]
+
+        
+        $("#main-loggedin-header-puff-background")[0].css("background-image", `url("${images[Math.floow(Math.random() * images.length)]}")`)
+        topstory.css("width", "100% !important");
+        topstory.css("height", "100vh !important");
+        topstory.css("background-size", "cover !important");
+
+
+
+
+
+
+
     },
 
     /**
@@ -98,10 +121,10 @@ BBLog.handle("add.plugin", {
     *    Always use "instance" to access any plugin related function, not use "this" because it's not working properly
     *    For example: If you add a new function to your addon, always pass the "instance" object
     */
-    domchange : function(instance){
+    domchange: function (instance) {
         // some log to the console to show you how the things work
         console.log(
-            "plugin."+instance.id+".domchanged",
+            "plugin." + instance.id + ".domchanged",
             instance.t("my.option"),
             instance.storage("foo.bar"),
             instance.storage("my.option"),
@@ -119,7 +142,7 @@ BBLog.handle("add.plugin", {
     *    Always use "instance" to access any plugin related function, not use "this" because it's not working properly
     *    For example: If you add a new function to your addon, always pass the "instance" object
     */
-    myOwnCustomFunc123 : function(instance){
+    myOwnCustomFunc123: function (instance) {
         alert("Hooo boy, you've clicked the button in the options. Now it's on you what you will make with this feature!");
     },
 
@@ -131,7 +154,7 @@ BBLog.handle("add.plugin", {
     *
     * @param string key
     */
-    t : function(key){},
+    t: function (key) { },
 
     /**
     * This function will be setted (injected) by the initializer
@@ -143,8 +166,8 @@ BBLog.handle("add.plugin", {
     * @param string key
     * @param mixed value Optional, if not set the function return the value instead of setting it
     */
-    cache : function(key, value){},
-
+    /*cache : function(key, value){},
+*/
     /**
     * This function will be setted (injected) by the initializer
     * This placeholder must not be implemented in your plugin,
@@ -157,5 +180,6 @@ BBLog.handle("add.plugin", {
     * @param string key
     * @param mixed value Optional, if not set the function return the value instead of setting it
     */
-    storage : function(key, value){}
+    /*   storage : function(key, value){}
+   */
 });
