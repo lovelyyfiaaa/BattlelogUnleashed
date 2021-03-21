@@ -87,8 +87,8 @@ BBLog.handle("add.plugin", {
     *    For example: If you add a new function to your addon, always pass the "instance" object
     */
     init: function (instance) {
-        var topstory = $("#main-loggedin-header-puff-topstory")[0];
-        topstory.detach().prependTo($("#viewport")[0]);
+        var topstory = $("#main-loggedin-header-puff-topstory");
+        topstory.detach().prependTo($("#viewport"));
         var images = ["https://i.imgur.com/RWe9l0d.jpg",
                       "https://i.imgur.com/dDyRt5Z.jpg", 
                       "https://i.imgur.com/ZbiABvW.jpg", 
@@ -98,12 +98,25 @@ BBLog.handle("add.plugin", {
                       "https://i.imgur.com/FeZTenL.jpg"]
 
         
-        $("#main-loggedin-header-puff-background")[0].css("background-image", `url("${images[Math.floow(Math.random() * images.length)]}")`)
-        topstory.css("width", "100% !important");
-        topstory.css("height", "100vh !important");
-        topstory.css("background-size", "cover !important");
-
-
+     
+        
+        var style = document.createElement("style");
+        style.innerHTML = `
+        
+       #main-loggedin-header-puff-topstory .main-loggedin-header-puff-background {
+            background-size: cover !important;
+            background-image:    url("${images[Math.floor(Math.random() * images.length)]}") !important;
+        }    
+        
+        #main-loggedin-header-puff-topstory {
+            height: 100vh !important;
+            width: 100% !important;
+            
+        }
+        }
+        
+        `;
+    document.head.appendChild(style);
 
 
 
