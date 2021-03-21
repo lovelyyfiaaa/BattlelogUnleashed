@@ -88,7 +88,7 @@ BBLog.handle("add.plugin", {
     */
     init: function (instance) {
         var topstory = $("#main-loggedin-header-puff-topstory")[0];
-        topstory.append($("#viewport")[0]);
+        topstory.detach().prependTo($("#viewport")[0]);
         var images = ["https://i.imgur.com/RWe9l0d.jpg",
                       "https://i.imgur.com/dDyRt5Z.jpg", 
                       "https://i.imgur.com/ZbiABvW.jpg", 
